@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+// ====================================
+// Função recursiva para a Torre
+// Movimento: sempre para a direita
+// ====================================
+void moverTorre(int casas) {
+    if (casas == 0) return;         // condição de parada
+    printf("Direita\n");            // movimento atual
+    moverTorre(casas - 1);          // chamada recursiva
+}
+
+// ====================================
+// Função recursiva para o Bispo
+// Movimento: sempre para cima e direita
+// Com loops aninhados para ilustrar o
+// deslocamento nas duas direções
+// ====================================
+void moverBispo(int casas) {
+    if (casas == 0) return;         // condição de parada
+
+    // Loop externo: vertical (cima)
+    for (int i = 0; i < 1; i++) {
+        // Loop interno: horizontal (direita)
+        for (int j = 0; j < 1; j++) {
+            printf("Cima, Direita\n");
+        }
+    }
+
+    moverBispo(casas - 1);          // chamada recursiva
+}
+
+// ====================================
+// Função recursiva para a Rainha
+// Movimento: sempre para a esquerda
+// ====================================
+void moverRainha(int casas) {
+    if (casas == 0) return;         // condição de parada
+    printf("Esquerda\n");           // movimento atual
+    moverRainha(casas - 1);         // chamada recursiva
+}
+
+// ====================================
+// Função para o Cavalo
+// Movimento: duas casas para cima,
+// depois uma para a direita
+// Usando loops aninhados + break/continue
+// ====================================
+void moverCavalo() {
+    printf("--- Movimento do Cavalo (2 casas para cima e 1 para a direita) ---\n");
+
+    // loop externo: duas casas para cima
+    for (int i = 1; i <= 2; i++) {
+        if (i == 0) continue;   // exemplo de uso de continue (não será acionado)
+        printf("Cima\n");
+    }
+
+    // loop interno: uma casa para a direita
+    for (int j = 1; j <= 2; j++) {
+        if (j > 1) break;       // só queremos uma casa à direita
+        printf("Direita\n");
+    }
+}
+
+// ====================================
+// Função principal
+// ====================================
+int main() {
+    int casasTorre = 5;
+    int casasBispo = 5;
+    int casasRainha = 8;
+
+    // Torre
+    printf("\n--- Movimento da Torre (5 casas para a direita) ---\n");
+    moverTorre(casasTorre);
+
+    // Bispo
+    printf("\n--- Movimento do Bispo (5 casas para cima e à direita) ---\n");
+    moverBispo(casasBispo);
+
+    // Rainha
+    printf("\n--- Movimento da Rainha (8 casas para a esquerda) ---\n");
+    moverRainha(casasRainha);
+
+    // Cavalo
+    printf("\n");
+    moverCavalo();
+
+    return 0;
+}
